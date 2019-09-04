@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="realestatefinder.SavedSearchEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realestatefinder"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <DockPanel>
+        <Popup Name="TrashConfirmation" StaysOpen="False" IsOpen="False">
+            <DockPanel Background="White">
+                <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="Black" Margin="4">Deletes this saved search permanently. Are you sure?</TextBlock>
+                <Button DockPanel.Dock="Left" Margin="4" Click="Trash_Confirmed">Yes</Button>
+                <Button DockPanel.Dock="Left" Margin="4" Click="Trash_Cancelled">No</Button>
+            </DockPanel>
+        </Popup>
+        <Button DockPanel.Dock="Right" Margin="4" Name="Trash_Button" Click="Trash_Button_Click">
+            <materialDesign:PackIcon Grid.Column="1" Kind="TrashCanOutline" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,0"></materialDesign:PackIcon>
+        </Button>
+        <local:SubscribeButton DockPanel.Dock="Right" Margin="4" Padding="8,0" Click="SubscribeButton_Click" x:Name="SearchSubButton"></local:SubscribeButton>
+        <Button DockPanel.Dock="Left" Margin="4" Name="SearchName" Click="LoadSaveClick"></Button>
+    </DockPanel>
+</UserControl>

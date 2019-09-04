@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87E3070D-9A77-4F3E-97E3-457DF1EBD81D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>realestatefinder</RootNamespace>
+    <AssemblyName>realestatefinder</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonControlsLibrary, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\AvalonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.5.0.1205, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.2.5.0.1205\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="EmailTextField.xaml.cs">
+      <DependentUpon>EmailTextField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmailTextFiledPlusSave.xaml.cs">
+      <DependentUpon>EmailTextFiledPlusSave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FilterButton.xaml.cs">
+      <DependentUpon>FilterButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Filters.cs" />
+    <Compile Include="IconFilterButton.xaml.cs">
+      <DependentUpon>IconFilterButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Listing.cs" />
+    <Compile Include="MapMarker.cs" />
+    <Compile Include="Pin.xaml.cs">
+      <DependentUpon>Pin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListingPin.xaml.cs" />
+    <Compile Include="PinCollection.cs" />
+    <Compile Include="Popup.xaml.cs">
+      <DependentUpon>Popup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popup1.xaml.cs">
+      <DependentUpon>Popup1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popup2.xaml.cs">
+      <DependentUpon>Popup2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popup3.xaml.cs">
+      <DependentUpon>Popup3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popup4.xaml.cs">
+      <DependentUpon>Popup4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SavableFilters.cs" />
+    <Compile Include="SavedSearchEntry.xaml.cs">
+      <DependentUpon>SavedSearchEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SaveSearchPopup.xaml.cs">
+      <DependentUpon>SaveSearchPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SideBarItem.xaml.cs">
+      <DependentUpon>SideBarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubscribeButton.xaml.cs">
+      <DependentUpon>SubscribeButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
+    <Compile Include="utils\ZoomBorder.cs" />
+    <Compile Include="ViewSavedSearchesPopup.xaml.cs">
+      <DependentUpon>ViewSavedSearchesPopup.xaml</DependentUpon>
+    </Compile>
+    <Page Include="EmailTextField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmailTextFiledPlusSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IconFilterButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popup1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popup2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popup3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popup4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SavedSearchEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SaveSearchPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SideBarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="SubscribeButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewSavedSearchesPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\photos\a1.jpg" />
+    <Resource Include="assets\photos\ApartmentIcon.png" />
+    <Resource Include="assets\photos\apartmentMarker.png" />
+    <Resource Include="assets\photos\apartmentMarkerClicked.png" />
+    <Resource Include="assets\photos\arrow0.png" />
+    <Resource Include="assets\photos\background-1.jpg" />
+    <Resource Include="assets\photos\background1.png" />
+    <Resource Include="assets\photos\banner.png" />
+    <Resource Include="assets\photos\BigHouse.PNG" />
+    <Resource Include="assets\photos\calgaryMapFull.png" />
+	<Resource Include="assets\photos\calgaryBackground.jpg" />
+    <Resource Include="assets\photos\CondoIcon.png" />
+    <Resource Include="assets\photos\condoMarker.png" />
+    <Resource Include="assets\photos\condoMarkerClicked.png" />
+    <Resource Include="assets\photos\ContactButton.png" />
+    <Resource Include="assets\photos\ContactButton2.png" />
+    <Resource Include="assets\photos\DuplexIcon.png" />
+    <Resource Include="assets\photos\duplexMarker.png" />
+    <Resource Include="assets\photos\duplexMarkerClicked.png" />
+    <Resource Include="assets\photos\fav.png" />
+    <Resource Include="assets\photos\favclicked.png" />
+    <Resource Include="assets\photos\h1.jpg" />
+    <Resource Include="assets\photos\h2.jpg" />
+    <Resource Include="assets\photos\home.png" />
+    <Resource Include="assets\photos\home2.png" />
+    <Resource Include="assets\photos\home3.jpg" />
+    <Resource Include="assets\photos\home5.jpg" />
+    <Resource Include="assets\photos\HouseIcon.png" />
+    <Resource Include="assets\photos\houseMarker.png" />
+    <Resource Include="assets\photos\houseMarkerClicked.png" />
+    <Resource Include="assets\photos\LoftIcon.png" />
+    <Resource Include="assets\photos\loftMarker.png" />
+    <Resource Include="assets\photos\loftMarkerClicked.png" />
+    <Resource Include="assets\photos\map.png" />
+    <Resource Include="assets\photos\map2.png" />
+    <Resource Include="assets\photos\map3.png" />
+    <Resource Include="assets\photos\marker.png" />
+    <Resource Include="assets\photos\MedHouse.PNG" />
+    <Resource Include="assets\photos\remacks.png" />
+    <Resource Include="assets\photos\remacks1.png" />
+    <Resource Include="assets\photos\remacks2.png" />
+    <Resource Include="assets\photos\SmallHouse.PNG" />
+    <Resource Include="assets\photos\star_filled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="assets\photos\star_outline.png" />
+    <Resource Include="assets\photos\TownHouseIcon.png" />
+    <Resource Include="assets\photos\townhouseMarker.png" />
+    <Resource Include="assets\photos\townhouseMarkerClicked.png" />
+    <Resource Include="assets\photos\trainmarker.png" />
+    <Resource Include="assets\photos\trainMarkerBlue.png" />
+    <Resource Include="assets\photos\trainMarkerRed.png" />
+    <Resource Include="assets\photos\XButton.png" />
+    <Resource Include="assets\listing_photos\listing1\*" />
+    <Resource Include="assets\listing_photos\listing2\*" />
+    <Resource Include="assets\listing_photos\listing3\*" />
+    <Resource Include="assets\listing_photos\listing4\*" />
+    <Resource Include="assets\listing_photos\listing5\*" />
+    <Resource Include="assets\listing_photos\listing6\*" />
+    <Resource Include="assets\listing_photos\listing7\*" />
+    <Resource Include="assets\listing_photos\listing8\*" />
+    <Resource Include="assets\listing_photos\listing9\*" />
+    <Resource Include="assets\listing_photos\listing10\*" />
+    <Resource Include="images\*" />
+    <Resource Include="assets\photos\chevron_right.png" />
+    <Resource Include="assets\photos\chevron_right_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AvalonControlsLibrary.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

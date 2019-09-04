@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="realestatefinder.EmailTextField"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realestatefinder"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <TextBox materialDesign:HintAssist.Hint="Enter your email" Margin="8" Background="White" Name="email_text_field"></TextBox>
+</UserControl>

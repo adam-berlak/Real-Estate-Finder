@@ -1,0 +1,204 @@
+﻿<Window x:Class="realestatefinder.Popup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:realestatefinder"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Home Details" Height="648" Width="842" ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True" Foreground="White" Background="#f4f4f4"
+        Topmost="True"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Background="Transparent" Grid.RowSpan="4" Grid.ColumnSpan="4" Click="closeEnlarge" Name="largebackgroundbutton" Height="Auto" Margin="0" Padding="0" Visibility="Hidden" Panel.ZIndex="2">
+            <Rectangle Name="largebackground" Fill="#000000" HorizontalAlignment="Left" Height="648" Stroke="Black" VerticalAlignment="Top" Width="842" Grid.RowSpan="4" Grid.ColumnSpan="4" Opacity="0.6" Visibility="Hidden" Panel.ZIndex="2"/>
+        </Button>
+        <Image x:Name="largeversion" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Stretch="Fill" Visibility="Hidden" Panel.ZIndex="3"/>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.ZIndex="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Click="gallary_next_large" materialDesign:RippleAssist.IsDisabled="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Grid.Row="1" Grid.Column="2" Name="largenext" Visibility="Hidden">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="assets/photos/chevron_right.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="assets/photos/chevron_right_hover.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
+            <Button Click="gallary_previous_large" materialDesign:RippleAssist.IsDisabled="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5" Name="largeprev" Visibility="Hidden">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="assets/photos/chevron_right.png"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Source" Value="assets/photos/chevron_right_hover.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="1" Click="enlargePicture" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Height="260">
+                <Image x:Name="image" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ZIndex="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Click="gallary_next" materialDesign:RippleAssist.IsDisabled="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Grid.Row="1" Grid.Column="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="assets/photos/chevron_right.png"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="assets/photos/chevron_right_hover.png"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
+                </Button>
+                <Button Click="gallary_previous" materialDesign:RippleAssist.IsDisabled="True" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Grid.Row="1" Grid.Column="0" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Setter Property="Source" Value="assets/photos/chevron_right.png"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Source" Value="assets/photos/chevron_right_hover.png"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
+                </Button>
+                <Button Click="favorite_click" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" Grid.Row="0" Grid.Column="1" materialDesign:RippleAssist.IsDisabled="True" Margin="0,4,4,0" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Image ToolTip="Press to save this listing for later" Name="favbutton" RenderOptions.BitmapScalingMode="Fant"></Image>
+                </Button>
+            </Grid>
+            <Button Click="contact_realtor_button" Grid.Row="1" Grid.Column="1" Margin="2" VerticalContentAlignment="Center" >
+                <Button.ToolTip>
+                    <ToolTip>
+                        Press to contact via email. Opens your default email client.
+                    </ToolTip>
+                </Button.ToolTip>
+                Contact Realtor
+            </Button>
+            <Image x:Name="map" Grid.Row="2" Grid.Column="1" Stretch="UniformToFill"/>
+            <Border Grid.Row="3" Grid.Column="1" Background="White" BorderBrush="Gray" BorderThickness="2">
+                <DockPanel Margin="2">
+                    <TextBlock x:Name="address" Foreground="Black" FontFamily="Segoe UI Light" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+        <Button Grid.Column="3" Grid.Row="0" Click="CloseButton_Click" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0">
+            <StackPanel Orientation="Horizontal">
+                <Image>
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="images\XButton3.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="images\XButton4.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </StackPanel>
+        </Button>
+        <Border Grid.Column="2" Grid.Row="1" Background="White" BorderBrush="Gray" BorderThickness="2,2,2,0">
+            <Label x:Name="typelabel" FontSize="18" BorderThickness="0" Background="#FF51C9F1" FontFamily="Segoe UI Light" Foreground="#DDFFFFFF" HorizontalAlignment="Left"/>
+        </Border>
+        <Border Grid.Column="2" Grid.Row="2" Background="White" BorderBrush="Gray" BorderThickness="2,0,2,2">
+            <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="False">
+                <Label x:Name="label3" Content="Contact Realtor" Foreground="White" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock Text="Property Description:" Foreground="#000000" FontFamily="Segoe UI Light" FontSize="18" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock x:Name="DescriptionDesc" Foreground="#000000" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top" TextWrapping="WrapWithOverflow"/>
+                <TextBlock x:Name="DescriptionPrice" Text="Price:" Foreground="#000000" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock x:Name="DescriptionSize" Text="Size:" Foreground="#000000" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock x:Name="DescriptionRooms" Text="Rooms:" Foreground="#000000" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock x:Name="DescriptionUtilities" Text="Utilities:" Foreground="#000000" TextWrapping="Wrap" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <TextBlock x:Name="DescriptionPets" Text="Pets:" Foreground="#000000" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <Label x:Name="label4" Content="Contact Realtor" Foreground="White" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Top"/>
+                <Label x:Name="label5" Content="Contact Realtor" Foreground="White" FontSize="14" FontFamily="Segoe UI Light" Margin="4" DockPanel.Dock="Bottom"/>
+                <TextBlock x:Name="Contact" TextWrapping="Wrap" FontSize="14" Foreground="#000000" FontFamily="Segoe UI Light" DockPanel.Dock="Bottom" Margin="4"></TextBlock>
+                <TextBlock x:Name="label2_Copy" Text="Contact Information:" Foreground="#000000" FontFamily="Segoe UI Light" FontSize="18" Margin="4" DockPanel.Dock="Bottom"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

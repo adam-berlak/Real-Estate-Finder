@@ -1,0 +1,30 @@
+﻿<Button x:Class="realestatefinder.IconFilterButton"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:realestatefinder"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" 
+        d:DesignHeight="450" d:DesignWidth="800"
+        SnapsToDevicePixels="True"
+        Margin="3,3,3,3" 
+        Padding="0"
+        Click="FilterButton_Click" 
+        HorizontalContentAlignment="Stretch">
+    <materialDesign:Card Background="Transparent">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <CheckBox IsEnabled="False" IsChecked="False" Style="{DynamicResource MaterialDesignActionLightToggleButton}"
+                  Height="20" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Check"
+                  Grid.Column="0">
+            </CheckBox>
+            <Image Name="FilterIcon" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"></Image>
+            <Label VerticalAlignment="Center" Name="FilterName" Grid.Column="2" Foreground="White"></Label>
+        </Grid>
+    </materialDesign:Card>
+</Button>

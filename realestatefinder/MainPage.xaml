@@ -1,0 +1,449 @@
+﻿<Page x:Class="realestatefinder.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:realestatefinder"
+      xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+      xmlns:other="http://schemas.AvalonControls/AvalonControlsLibrary/Controls"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      TextOptions.TextHintingMode="Animated"
+      Background="#efeeec"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      Title="MainPage">
+    <Page.Resources>
+        <!-- Brushes used in Styling of ScrollViewer -->
+        <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="StandardBackgroundBrush" Color="#FFF" />
+        <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
+        <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="Gray" />
+        <SolidColorBrush x:Key="SelectedForegroundBrush" Color="White" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+        <SolidColorBrush x:Key="NormalBrush" Color="#888" />
+        <SolidColorBrush x:Key="NormalBorderBrush" Color="#888" />
+        <SolidColorBrush x:Key="HorizontalNormalBrush" Color="#888" />
+        <SolidColorBrush x:Key="HorizontalNormalBorderBrush" Color="#888" />
+        <LinearGradientBrush x:Key="ListBoxBackgroundBrush" StartPoint="0,0" EndPoint="1,0.001">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="White" Offset="0.0" />
+                    <GradientStop Color="White" Offset="0.6" />
+                    <GradientStop Color="#DDDDDD" Offset="1.2"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="StandardBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#CCC" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="GlyphBrush" Color="#444" />
+        <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#BBB" Offset="0.0"/>
+                    <GradientStop Color="#EEE" Offset="0.1"/>
+                    <GradientStop Color="#EEE" Offset="0.9"/>
+                    <GradientStop Color="#FFF" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+        <Style x:Key="ScrollBarLineButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Name="Border" Margin="1" CornerRadius="2" Background="{StaticResource NormalBrush}" BorderBrush="{StaticResource NormalBorderBrush}" BorderThickness="1">
+                            <Path HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource GlyphBrush}" Data="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource PressedBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border CornerRadius="2" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition MaxHeight="18"/>
+                    <RowDefinition Height="0.00001*"/>
+                    <RowDefinition MaxHeight="18"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="3" CornerRadius="2" Background="#F0F0F0" />
+                <RepeatButton Grid.Row="0" Style="{StaticResource ScrollBarLineButton}" Height="18" Command="ScrollBar.LineUpCommand" Content="M 0 4 L 8 4 L 4 0 Z" />
+                <Track Name="PART_Track"  Grid.Row="1" IsDirectionReversed="true">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageUpCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1,0,1,0" Background="{StaticResource HorizontalNormalBrush}" BorderBrush="{StaticResource HorizontalNormalBorderBrush}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageDownCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Row="3" Style="{StaticResource ScrollBarLineButton}" Height="18" Command="ScrollBar.LineDownCommand" Content="M 0 0 L 4 4 L 8 0 Z"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="18"/>
+                    <ColumnDefinition Width="0.00001*"/>
+                    <ColumnDefinition MaxWidth="18"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.ColumnSpan="3" CornerRadius="2" Background="#F0F0F0" />
+                <RepeatButton Grid.Column="0" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineLeftCommand" Content="M 4 0 L 4 8 L 0 4 Z" />
+                <Track Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageLeftCommand" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource ScrollBarThumb}" Margin="0,1,0,1" Background="{StaticResource NormalBrush}" BorderBrush="{StaticResource NormalBorderBrush}" />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource ScrollBarPageButton}" Command="ScrollBar.PageRightCommand" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton Grid.Column="3" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Template" Value="{StaticResource HorizontalScrollBar}" />
+                </Trigger>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Width" Value="18"/>
+                    <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="FavsScrollViewer" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ScrollContentPresenter Grid.Column="1"/>
+                            <ScrollBar Name="PART_VerticalScrollBar" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                            <ScrollBar Name="PART_HorizontalScrollBar"  Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Viewbox Stretch="Fill">
+        <Grid Name="MainGrid" Background="#f4f4f4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="1040" Width="1920">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Name="topbarblocker" Fill="#000000" Stroke="Black" Opacity="0.6" Visibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Panel.ZIndex="10"/>
+            <Button Background="Transparent" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="ClosePopup" Name="largebackgroundbutton" Height="Auto" Visibility="Hidden" Margin="0" Padding="0" Panel.ZIndex="200" materialDesign:RippleAssist.IsDisabled="True">
+                <Rectangle Grid.RowSpan="2" Grid.ColumnSpan="2" Name="largebackground" Fill="#000000" Stroke="Black" Opacity="0.6" Visibility="Hidden" HorizontalAlignment="Left" Height="1040" VerticalAlignment="Top" Width="1920" Panel.ZIndex="200"/>
+            </Button>
+            <materialDesign:Card Grid.Column="0" Grid.Row="0" Grid.ZIndex="4" Grid.ColumnSpan="2" Background="#f4f4f4" BorderThickness="0"  materialDesign:ShadowAssist.ShadowEdges="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid Name="TopBarGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2368*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.6316*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.4737*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" MinWidth="113.664">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="assets/photos/remacks.png" Name="PinImage" RenderOptions.BitmapScalingMode="Fant"></Image>
+                        <local:FilterButton Grid.Row="1" FilterButtonName="Rent" Margin="5" Click="Rent_Button_Click" x:Name="RentButton"></local:FilterButton>
+                        <local:FilterButton Grid.Row="2" FilterButtonName="Buy" Margin="5" Click="Buy_Button_Click" x:Name="BuyButton"></local:FilterButton>
+                    </Grid>
+                    <Grid Name="PriceGrid" Grid.Column="1" MinWidth="475">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" Content="ReMacks Calgary" FontSize="40" FontStyle="Oblique" Foreground="Black"></Label>
+                        <Slider Grid.Column="0" Grid.Row="1" Margin="5,5,0,5" IsSnapToTickEnabled="True" TickFrequency="100" Maximum="6000" VerticalAlignment="Center" Name="RentSlider" Value="6000"></Slider>
+                        <Slider Grid.Column="0" Grid.Row="2" Margin="5,5,0,5" IsSnapToTickEnabled="True" Maximum="2000000" TickFrequency="25000" VerticalAlignment="Center" Name="BuySlider" Value="2000000"></Slider>
+                        <DockPanel Name="RentDockPanel" Grid.Column="1" Grid.Row="1" Margin="0,5,5,5">
+                            <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="$"></Label>
+                            <TextBox VerticalAlignment="Center" Text="{Binding ElementName=RentSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="12" Name="RentText" Background="White" TextChanged="Rent_ValueChanged" PreviewTextInput="PreviewTextInputInt" materialDesign:ValidationAssist.Suppress="True" LostFocus="LostFocusValueValidation"></TextBox>
+                        </DockPanel>
+                        <DockPanel Name="BuyDockPanel" Grid.Column="1" Grid.Row="2" Margin="0,5,5,5">
+                            <Label VerticalAlignment="Center" HorizontalAlignment="Right" Content="$"></Label>
+                            <TextBox Text="{Binding ElementName=BuySlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="12" VerticalAlignment="Center" Name="BuyText" Background="White" TextChanged="Buy_ValueChanged" PreviewTextInput="PreviewTextInputInt" materialDesign:ValidationAssist.Suppress="True" LostFocus="LostFocusValueValidation"></TextBox>
+                        </DockPanel>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Margin="0,5,5,5" TextWrapping="WrapWithOverflow" FontSize="12" VerticalAlignment="Center" Name="RentLabel">Max Monthly Rental Price</TextBlock>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Margin="0,5,5,5" TextWrapping="WrapWithOverflow" FontSize="12" VerticalAlignment="Center" Name="BuyLabel">Max Purchase Price</TextBlock>
+                    </Grid>
+                    <ItemsControl Grid.Column="5" MinWidth="265.296">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Grid />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <Grid Name="AmenitiesGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Amenities Included in Rent</Label>
+                            <local:FilterButton Grid.Column="0" Grid.Row="1" Margin="5,0" FilterButtonName="Water" x:Name="WaterIncluded" Click="PinsRefresh"></local:FilterButton>
+                            <local:FilterButton Grid.Column="0" Grid.Row="2" Margin="5,0" FilterButtonName="Electricity" x:Name="ElectricityIncluded" Click="PinsRefresh"></local:FilterButton>
+                            <local:FilterButton Grid.Column="0" Grid.Row="3" Margin="5,0" FilterButtonName="Heat" x:Name="HeatIncluded" Click="PinsRefresh"></local:FilterButton>
+                            <local:FilterButton Grid.Column="1" Grid.Row="1" Margin="5,0" FilterButtonName="Internet" x:Name="InternetIncluded" Click="PinsRefresh"></local:FilterButton>
+                            <local:FilterButton Grid.Column="1" Grid.Row="2" Margin="5,0" FilterButtonName="Parking" x:Name="ParkingIncluded" Click="PinsRefresh"></local:FilterButton>
+                            <local:FilterButton Grid.Column="1" Grid.Row="3" Margin="5,0" FilterButtonName="Television" x:Name="TelevisionIncluded" Click="PinsRefresh"></local:FilterButton>
+                        </Grid>
+                    </ItemsControl>
+                    <Grid Grid.Column="2" MinWidth="275">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Property Type</Label>
+                        <local:IconFilterButton Grid.Column="0" Grid.Row="1" Margin="5,0" FilterButtonName="House" FilterIconSource="assets/photos/HouseIcon.png" x:Name="HouseFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>A standalone building with its own lot</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                        <local:IconFilterButton Grid.Column="1" Grid.Row="1" Margin="5,0" FilterButtonName="Townhouse" FilterIconSource="assets/photos/TownHouseIcon.png" x:Name="TownhouseFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>A house which is attached to one or more similar houses by shared walls</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                        <local:IconFilterButton Grid.Column="0" Grid.Row="2" Margin="5,0" FilterButtonName="Apartment" FilterIconSource="assets/photos/ApartmentIcon.png" x:Name="ApartmentFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>A living space in a building containing other similar living spaces</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                        <local:IconFilterButton Grid.Column="1" Grid.Row="2" Margin="5,0" FilterButtonName="Condo" FilterIconSource="assets/photos/CondoIcon.png" x:Name="CondoFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>A living space that falls under the jurisdiction of a condo association</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                        <local:IconFilterButton Grid.Column="0" Grid.Row="3" Margin="5,0" FilterButtonName="Loft" FilterIconSource="assets/photos/LoftIcon.png" x:Name="LoftFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>The uppermost half of a shared living space</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                        <local:IconFilterButton Grid.Column="1" Grid.Row="3" Margin="5,0" FilterButtonName="Duplex" FilterIconSource="assets/photos/DuplexIcon.png" x:Name="DuplexFilter" Click="PinsRefresh">
+                            <local:IconFilterButton.ToolTip>A standalone building divided into 2 separate living spaces</local:IconFilterButton.ToolTip>
+                        </local:IconFilterButton>
+                    </Grid>
+                    <Grid Grid.Column="3" MinWidth="227.376">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="1.5*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Column="1" Grid.Row="0" Stretch="Uniform" Margin="0,3,0,0" Source="assets/photos/marker.png" RenderOptions.BitmapScalingMode="Fant"></Image>
+                        <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
+                            <TextBlock DockPanel.Dock="Top" Background="White" Name="ErrorField" Visibility="Hidden" Margin="0,4,0,0" FontSize="11" Foreground="Red" TextWrapping="WrapWithOverflow">Unknown address or landmark</TextBlock>
+                            <toolkit:AutoCompleteBox DockPanel.Dock="Top" PreviewKeyDown="OnKeyHandler" HorizontalContentAlignment="Stretch" VerticalAlignment="Center" HorizontalAlignment="Stretch" x:Name="AddressTextBox" Background="White" TextChanged="AddressBox_TextChange"
+                                 materialDesign:HintAssist.Hint="Address or Landmark..." Height="32" BorderThickness="0,0,0,1" >
+                                <toolkit:AutoCompleteBox.Style>
+                                    <Style TargetType="toolkit:AutoCompleteBox">
+                                        <Setter Property="TextBoxStyle" Value="{StaticResource MaterialDesignTextBox}" />
+                                    </Style>
+                                </toolkit:AutoCompleteBox.Style>
+                            </toolkit:AutoCompleteBox>
+                        </DockPanel>
+                        <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="6*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBox Grid.Column="1" Grid.Row="1" Margin="2" VerticalAlignment="Center" Name="AddressProx" Background="White" TextChanged="UpdateAddressProx" PreviewTextInput="PreviewTextInputInt" materialDesign:ValidationAssist.Suppress="True" LostFocus="LostFocusValueValidation"></TextBox>
+                            <Label Grid.Column="2" Grid.Row="1" Content="km" HorizontalAlignment="Left" VerticalAlignment="Center" ></Label>
+                            <Label Grid.Column="0" Grid.Row="1" Content="Proximity" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="4" MinWidth="300">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1.5*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Image Name="HouseImage" Source="assets/photos/BigHouse.PNG"></Image>
+                            <Slider Grid.Column="0" Grid.Row="1" Margin="8,0,4,0" IsSnapToTickEnabled="True" TickFrequency="1" Maximum="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="BedSlider" Value="0"></Slider>
+                            <Slider Grid.Column="0" Grid.Row="2" Margin="8,0,4,0" IsSnapToTickEnabled="True" Minimum="0.5" Maximum="6" TickFrequency="0.5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="BathSlider" Value="0.5"></Slider>
+                            <TextBox Grid.Column="1" Grid.Row="1" Margin="4,0" VerticalAlignment="Center" Text="{Binding ElementName=BedSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Name="BedText" Background="White" TextChanged="Bed_ValueChanged" PreviewTextInput="PreviewTextInputInt" materialDesign:ValidationAssist.Suppress="True" LostFocus="LostFocusValueValidation"></TextBox>
+                            <TextBox Grid.Column="1" Grid.Row="2" Margin="4,0" Text="{Binding ElementName=BathSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Name="BathText" Background="White" TextChanged="Bath_ValueChanged" PreviewTextInput="PreviewTextInputDouble" materialDesign:ValidationAssist.Suppress="True" LostFocus="LostFocusValueValidation"></TextBox>
+                            <TextBlock Grid.Column="2" Grid.Row="1" Margin="4,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Name="BedLabel">Min Beds</TextBlock>
+                            <TextBlock Grid.Column="2" Grid.Row="2" Margin="4,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Name="BathLabel">Min Baths</TextBlock>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Column="6" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Column="0" Grid.Row="1" Content="Save Search" VerticalAlignment="Center" Margin="5" Click="SaveSearchClick">
+                        </Button>
+                        <Button Grid.Column="0" Grid.Row="2" Content="Load Search" VerticalAlignment="Center" Margin="5" Click="ViewSavedSearchesClick" >
+                        </Button>
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+            <local:ZoomBorder x:Name="MapBorder" Background="#efeeec" ClipToBounds="True" Grid.Column="0" Grid.Row="1">
+                <Image Name="MapImage" Source="assets/photos/calgaryMapFull.png" Stretch="UniformToFill" >
+                    <Image.CacheMode>
+                        <BitmapCache EnableClearType="False" 
+                                     RenderAtScale="5.0" 
+                                     SnapsToDevicePixels="False"  />
+                    </Image.CacheMode>
+                </Image>
+            </local:ZoomBorder>
+            <Ellipse Name="SearchAreaCircle" Grid.Column="0" Grid.Row="1" Grid.ZIndex="1"
+                 Fill="{DynamicResource PrimaryHueLightBrush}" Opacity="0.3" Visibility="Hidden"
+                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                 IsHitTestVisible="False"></Ellipse>
+            <Grid Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="12*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Slider Name="MapZoomSlider" Grid.Column="1" Grid.Row="1" Grid.ZIndex="3" IsSnapToTickEnabled="True" TickFrequency="1" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Orientation="Vertical" Value="1" Minimum="1" Maximum="100" ValueChanged="MapZoomSlider_ValueChanged" Thumb.DragStarted="MapZoomSlider_DragStarted"></Slider>
+                <Button Background="Transparent" BorderBrush="Transparent" Grid.Column ="1" Grid.Row="0" Grid.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="20" Width="20" Padding="0" Click="ZoomPlusClick">
+                    <materialDesign:PackIcon Kind="PlusCircleOutline" Foreground="{DynamicResource PrimaryHueDarkBrush}" Height="20" Width="20"/>
+                </Button>
+                <Button Background="Transparent" BorderBrush="Transparent" Grid.Column ="1" Grid.Row="2" Grid.ZIndex="3" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Width="20" Padding="0" Click="ZoomMinusClick">
+                    <materialDesign:PackIcon Kind="MinusCircleOutline" Foreground="{DynamicResource PrimaryHueDarkBrush}" Height="20" Width="20" />
+                </Button>
+            </Grid>
+            <materialDesign:Card Grid.Column="1" Grid.Row="1" Grid.ZIndex="3" Background="#f4f4f4" materialDesign:ShadowAssist.ShadowEdges="Left" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid Grid.Column="1" Grid.Row="1" >
+                    <Grid Grid.Column="0" Grid.Row="1" Panel.ZIndex="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <local:FilterButton x:Name="SavedListingsButton" FilterButtonName="View Saved Listings" Click="ViewSavedListingsClick" FilterActive="False" Grid.Column="1" Grid.Row="0" MinHeight="40" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0,0,0,20" HorizontalContentAlignment="Center"/>
+                    </Grid>
+                    <DockPanel>
+                        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl Name="SidebarControls">
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <Label x:Name="ListingsSearchLabel" DockPanel.Dock="Top" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" />
+                        <Separator DockPanel.Dock="Top"></Separator>
+                        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" >
+                            <ItemsControl x:Name="ListingSidebar" Grid.Column="0" Grid.Row="0" Panel.ZIndex="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" materialDesign:RippleAssist.IsDisabled="True">
+                                <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" x:Name="ListingsView">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListBoxItem_PreviewMouseLeftButtonDown" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                </ListBox>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </Viewbox>
+</Page>
